@@ -9,18 +9,18 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import CameraItem from './CameraItem';
 
-import LIST_CAMERA from '../assets/data';
+import DATA from '../assets/data';
 
-  const MyList = () => {
-    return (
-        <FlashList
-          width="100%"
-          height="100%"
-          data={LIST_CAMERA}
-          renderItem={({ item }) => <CameraItem objCamera={item} />}
-          estimatedItemSize={200}
-        />
-    );
-  };
+const MyList = () => {
+  return (
+    <FlashList
+      width="100%"
+      height="100%"
+      data={DATA.LIST_CAMERA}
+      renderItem={({ item }) => <CameraItem objCamera={item} />}
+      estimatedItemSize={200}
+    />
+  );
+};
 
-  export default MyList;
+export default MyList;

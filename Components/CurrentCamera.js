@@ -15,6 +15,7 @@ const CurrentCamera = () => {
     return (
         // <View className="bg-red-600">
             <Image
+            
                 className="w-full h-full bg-black object-contain"
                 source="https://camera.thongtingiaothong.vn/api/snapshot/56de42f611f398ec0c481280"
                 contentFit="contain"
