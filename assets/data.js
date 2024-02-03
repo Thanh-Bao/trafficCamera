@@ -1,3 +1,5 @@
+const URL = "https://camera.thongtingiaothong.vn/api/snapshot/";
+
 const LIST_DISTRICT = [
   "Quận 2",
   "Quận 3",
@@ -2834,5 +2836,5 @@ const LIST_CAMERA = [
     "longitude": 106.70676112174988
   }
 ];
-const DATA = { LIST_CAMERA, LIST_DISTRICT };
+const DATA = { LIST_CAMERA, LIST_DISTRICT, URL };
 export default DATA;

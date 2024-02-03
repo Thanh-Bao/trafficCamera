@@ -8,6 +8,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import DATA from '../assets/data';
 
 
 const CameraItem = ({ objCamera }) => {
@@ -15,7 +16,7 @@ const CameraItem = ({ objCamera }) => {
         <View className=" flex flex-row bg-gray-100 p-2 m-2 rounded-xl">
             <View className="w-2/6">
                 <Image
-                    source="https://picsum.photos/seed/696/3000/2000"
+                    source={DATA.URL+objCamera.ID}
                     className="w-32 h-24 rounded-xl"
                     contentFit="cover"
                     transition={1000}

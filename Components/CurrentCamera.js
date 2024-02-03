@@ -8,20 +8,19 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import CameraItem from './CameraItem';
-
+import DATA from '../assets/data';
 
 
 const CurrentCamera = () => {
     return (
-        // <View className="bg-red-600">
+        <View className="">
             <Image
-            
                 className="w-full h-full bg-black object-contain"
-                source="https://camera.thongtingiaothong.vn/api/snapshot/56de42f611f398ec0c481280"
+                source={`${DATA.URL}56de42f611f398ec0c481280`}
                 contentFit="contain"
                 transition={1000}
             />
-        // </View>
+        </View>
     );
 };
 
