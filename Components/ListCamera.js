@@ -1,5 +1,5 @@
 
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet , FlatList} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
@@ -9,21 +9,23 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import CameraItem from './CameraItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateDistrict } from '../redux/features/changeDistrict';
+import { updateDistrict } from '../redux/handler';
 
 import DATA from '../assets/data';
 
 const MyList = () => {
   const data = useSelector((state) => state.changeDistrict.listCamera);
   const dispatch = useDispatch();
+
   return (
-    <FlashList
-      width="100%"
-      height="100%"
-      data={data}
-      renderItem={({ item }) => <CameraItem objCamera={item} />}
-      estimatedItemSize={200}
-    />
+      <FlashList
+        key={data[0].ID} // dòng này để reset về camera đầu tiên mỗi khi đổi quận dropdown
+        keyExtractor={(_,index)=> index}
+        data={data}
+        renderItem={({ item }) => <CameraItem objCamera={item} />}
+        estimatedItemSize={data.length}
+        initialScrollIndex={0}
+      />
   );
 };
 

@@ -9,16 +9,19 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import CameraItem from './CameraItem';
 import DATA from '../assets/data';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { updateCurrentCamera } from '../redux/handler'
 
 const CurrentCamera = () => {
+    const { currentCamera } = useSelector((state) => state.changeDistrict);
+    const dispatch = useDispatch();
     return (
         <View className="">
             <Image
                 className="w-full h-full bg-black object-contain"
-                source={`${DATA.URL}56de42f611f398ec0c481280`}
+                source={DATA.URL + currentCamera}
                 contentFit="contain"
-                transition={1000}
+                placeholder={require('../assets/indicator.gif')}
             />
         </View>
     );

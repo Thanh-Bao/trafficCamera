@@ -10,7 +10,7 @@ import { Dimensions } from 'react-native';
 import DATA from '../assets/data';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useSelector, useDispatch } from 'react-redux'
-import { updateDistrict } from '../redux/features/changeDistrict'
+import { updateDistrict } from '../redux/handler'
 
 const data = DATA.LIST_DISTRICT.map(item => ({
   label: item, value: item

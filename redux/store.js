@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import changeDistrict from './features/changeDistrict'
+import changeDistrict from './handler'
 
 export const store = configureStore({
   reducer: {
