@@ -10,7 +10,7 @@ import { Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import DATA from '../assets/data';
 import { useSelector, useDispatch } from 'react-redux'
-import { updateCurrentCamera } from '../redux/handler'
+import { updateCurrentCamera } from '../redux/features/hanlderLocation'
 
 const CameraItem = ({ objCamera }) => {
 

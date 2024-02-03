@@ -9,7 +9,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import CameraItem from './CameraItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateDistrict } from '../redux/handler';
+import { updateDistrict } from '../redux/features/hanlderLocation';
 
 import DATA from '../assets/data';
 

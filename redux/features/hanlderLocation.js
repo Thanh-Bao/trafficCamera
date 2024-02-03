@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import DATA from '../assets/data'
+import DATA from '../../assets/data'
 
 const initialState = {
     currentDistrictState: null,

@@ -10,14 +10,16 @@ import { Dimensions } from 'react-native';
 import CameraItem from './CameraItem';
 import DATA from '../assets/data';
 import { useSelector, useDispatch } from 'react-redux'
-import { updateCurrentCamera } from '../redux/handler'
 
 const CurrentCamera = () => {
     const { currentCamera } = useSelector((state) => state.changeDistrict);
-    const dispatch = useDispatch();
+    const { now } = useSelector((state) => state.changeTime);
+    // Image.clearMemoryCache();
+    Image.clearDiskCache();
     return (
-        <View className="">
+        <View>
             <Image
+                key={now}
                 className="w-full h-full bg-black object-contain"
                 source={DATA.URL + currentCamera}
                 contentFit="contain"
