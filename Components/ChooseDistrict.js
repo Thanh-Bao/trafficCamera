@@ -9,14 +9,17 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import DATA from '../assets/data';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useSelector, useDispatch } from 'react-redux'
+import { updateDistrict } from '../redux/features/changeDistrict'
 
 const data = DATA.LIST_DISTRICT.map(item => ({
   label: item, value: item
 }));
 
 const DropdownComponent = () => {
-  const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const value = useSelector((state) => state.changeDistrict.currentDistrictState);
+  const dispatch = useDispatch();
 
   const renderLabel = () => {
     if (value || isFocus) {
@@ -49,7 +52,7 @@ const DropdownComponent = () => {
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={item => {
-          setValue(item.value);
+          dispatch(updateDistrict(item))
           setIsFocus(false);
         }}
         renderLeftIcon={() => (

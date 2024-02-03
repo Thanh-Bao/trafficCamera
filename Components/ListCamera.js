@@ -8,15 +8,19 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Dimensions } from 'react-native';
 import CameraItem from './CameraItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateDistrict } from '../redux/features/changeDistrict';
 
 import DATA from '../assets/data';
 
 const MyList = () => {
+  const data = useSelector((state) => state.changeDistrict.listCamera);
+  const dispatch = useDispatch();
   return (
     <FlashList
       width="100%"
       height="100%"
-      data={DATA.LIST_CAMERA}
+      data={data}
       renderItem={({ item }) => <CameraItem objCamera={item} />}
       estimatedItemSize={200}
     />

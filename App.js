@@ -10,27 +10,28 @@ import { Dimensions } from 'react-native';
 import DropdownComponent from './Components/ChooseDistrict';
 import MyList from './Components/ListCamera';
 import CurrentCamera from './Components/CurrentCamera';
-
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
 
 
 export default function App() {
 
-  const blurhash =
-    '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
   return (
-    <SafeAreaProvider >
-      <View className="w-full h-full">
-        {/* /////////////////////// Hiển thị camera ///////////////// */}
-        <View className="h-1/3"> 
-          <CurrentCamera/>
+    <Provider store={store}>
+      <SafeAreaProvider >
+        <View className="w-full h-full">
+          {/* /////////////////////// Hiển thị camera ///////////////// */}
+          <View className="h-1/3">
+            <CurrentCamera />
+          </View>
+          {/* /////////////////////// Hiển filter ///////////////// */}
+          <DropdownComponent />
+          {/* /////////////////////// Hiển list ///////////////// */}
+          <MyList />
         </View>
-        {/* /////////////////////// Hiển filter ///////////////// */}
-        <DropdownComponent />
-        {/* /////////////////////// Hiển list ///////////////// */}
-        <MyList />
-      </View>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 
