@@ -66,7 +66,8 @@ const DropdownComponent = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    padding: 16,
+    padding: 8,
+    paddingTop: 15
   },
   dropdown: {
     height: 50,

@@ -12,17 +12,20 @@ import MyList from './Components/ListCamera';
 import CurrentCamera from './Components/CurrentCamera';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import { StatusBar } from 'react-native';
+
+StatusBar.setHidden(true);
 
 
 export default function App() {
 
 
   return (
-    <Provider store={store}>
-      <SafeAreaProvider >
+    <SafeAreaProvider >
+      <Provider store={store}>
         <View className="w-full h-full">
           {/* /////////////////////// Hiển thị camera ///////////////// */}
-          <View className="h-1/3">
+          <View style={{height: "28.5%"}}>
             <CurrentCamera />
           </View>
           {/* /////////////////////// Hiển filter ///////////////// */}
@@ -30,8 +33,8 @@ export default function App() {
           {/* /////////////////////// Hiển list ///////////////// */}
           <MyList />
         </View>
-      </SafeAreaProvider>
-    </Provider>
+      </Provider>
+    </SafeAreaProvider>
   );
 }
 
