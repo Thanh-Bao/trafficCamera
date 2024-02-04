@@ -1,4 +1,5 @@
-const URL = "https://camera.thongtingiaothong.vn/api/snapshot/";
+const URL0 = "https://camera.zira.vn/";
+const URL1 = "https://camera.thongtingiaothong.vn/api/snapshot/";
 
 const LIST_DISTRICT = [
   "Quận Bình Tân",
