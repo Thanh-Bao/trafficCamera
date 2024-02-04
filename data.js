@@ -1,4 +1,4 @@
-const URL0 = "https://camera.zira.vn/";
+const URL = "https://camera.zira.vn/";
 const URL1 = "https://camera.thongtingiaothong.vn/api/snapshot/";
 
 const LIST_DISTRICT = [

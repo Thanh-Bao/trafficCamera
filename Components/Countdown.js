@@ -30,7 +30,7 @@ export default function Countdown() {
                 
             >
                 {({ remainingTime, color }) => (
-                    <Text className="text-white font-bold" style={{ fontSize: 30 }}>
+                    <Text className="text-white font-bold" style={{ fontSize: 20 }}>
                         {remainingTime}
                     </Text>
                 )}
