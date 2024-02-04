@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import DATA from '../../assets/data'
+import DATA from '../../data'
+import { distanceHaversine } from '../../Util';
 
 const initialState = {
     currentDistrictState: null,
     listCamera: DATA.LIST_CAMERA,
     currentItemSelected: null,
-    currentCamera: DATA.LIST_CAMERA[DATA.LIST_CAMERA.length - 1].ID
+    currentCamera: DATA.LIST_CAMERA[DATA.LIST_CAMERA.length - 1].ID,
+    currentGPS: null,
 }
 
 export const changeDistrict = createSlice({
@@ -27,10 +29,17 @@ export const changeDistrict = createSlice({
             state.currentDistrictState = action.payload;
             state.listCamera = DATA.LIST_CAMERA.filter(item => item.street == action.payload.value)
             state.currentCamera = state.listCamera[state.listCamera.length - 1].ID;
-        }
+        },
+        updateGPS: (state, action) => {
+            state.currentGPS = action.payload;
+            state.listCamera = DATA.LIST_CAMERA.map((item) => ({
+                ...item,
+                distance: distanceHaversine(action.payload.latitude, item.latitude, action.payload.longitude, item.longitude)
+            })).sort((a,b)=>a.distance - b.distance);
+        },
     },
 })
 
-export const { updateDistrict, updateCurrentCamera, updateCameraFromStreet } = changeDistrict.actions
+export const { updateDistrict, updateCurrentCamera, updateCameraFromStreet, updateGPS } = changeDistrict.actions
 
 export default changeDistrict.reducer

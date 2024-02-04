@@ -1,21 +1,18 @@
 
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
-import { FlashList } from "@shopify/flash-list";
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { Dropdown } from 'react-native-element-dropdown';
-import { Dimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import DATA from '../assets/data';
+import DATA from '../data';
 import { useSelector, useDispatch } from 'react-redux'
 import { updateCurrentCamera } from '../redux/features/hanlderLocation'
+import { distanceHaversine, formatKilometers } from '../Util';
 
 const CameraItem = ({ objCamera }) => {
 
     const { currentItemSelected } = useSelector((state) => state.changeDistrict);
     const { listCamera } = useSelector((state) => state.changeDistrict);
+    const { currentGPS } = useSelector(state => state.changeDistrict);
 
     const dispatch = useDispatch();
     const isSelected = currentItemSelected == objCamera.ID;
@@ -51,7 +48,10 @@ const CameraItem = ({ objCamera }) => {
                 </View>
                 <View className="flex-row items-center">
                     <Ionicons name={isSelected ? "golf" : "golf-outline"} size={15} color="black" />
-                    <Text className="ml-2"> Cách 5 km 40 m</Text>
+                    {currentGPS?.latitude ?
+                        <Text> Cách: {formatKilometers(distanceHaversine(currentGPS.latitude, objCamera.latitude, currentGPS.longitude, objCamera.longitude))}</Text> :
+                        <Text className="text-orange-400"> chưa cấp quyền vị trí</Text>
+                    }
                 </View>
             </View>
         </TouchableOpacity>

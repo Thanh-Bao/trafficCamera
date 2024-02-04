@@ -1,13 +1,9 @@
 
 import { Text, View, StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Image } from 'expo-image';
 import React, { useState } from 'react';
-import { FlashList } from "@shopify/flash-list";
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { Dropdown } from 'react-native-element-dropdown';
-import { Dimensions } from 'react-native';
-import DATA from '../assets/data';
+import { AntDesign } from '@expo/vector-icons';
+import DATA from '../data';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useSelector, useDispatch } from 'react-redux'
 import { updateDistrict, updateCameraFromStreet } from '../redux/features/hanlderLocation'
@@ -57,7 +53,7 @@ const DropdownComponent = () => {
             setIsFocus(false);
           }}
           renderLeftIcon={() => (
-            <Ionicons name="search" size={20} color="black" />
+            <AntDesign name="filter" size={20} color="black" />
           )}
         />
       </View>

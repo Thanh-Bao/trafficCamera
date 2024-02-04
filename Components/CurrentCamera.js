@@ -1,8 +1,8 @@
 
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, ToastAndroid } from 'react-native';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
-import DATA from '../assets/data';
+import DATA from '../data';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentTime } from '../Util';
 import Clock from './Clock';

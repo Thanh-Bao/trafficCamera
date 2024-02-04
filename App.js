@@ -1,7 +1,7 @@
 
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import DropdownComponent from './Components/FilterCamera';
 import MyList from './Components/ListCamera';
 import CurrentCamera from './Components/CurrentCamera';
@@ -13,7 +13,6 @@ StatusBar.setHidden(true);
 
 
 export default function App() {
-
   return (
     <SafeAreaProvider >
       <Provider store={store}>
