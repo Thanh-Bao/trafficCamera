@@ -34,7 +34,7 @@ const CameraItem = ({ objCamera }) => {
                     placeholder={require('../assets/indicator.gif')}
                 />
             </View>
-            <View className=" px-3 w-4/6 flex space-y-2">
+            <View className=" px-3 w-4/6 flex justify-between">
                 <View className="flex-row  items-center">
                     <Ionicons name={isSelected ? "videocam" : "videocam-outline"} size={15} color="black" />
                     <Text className="font-bold ml-2">

@@ -1,15 +1,12 @@
 
 import { Text, View, StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
-import { FlashList } from "@shopify/flash-list";
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { Dropdown } from 'react-native-element-dropdown';
-import { Dimensions } from 'react-native';
-import CameraItem from './CameraItem';
 import DATA from '../assets/data';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { getCurrentTime } from '../Util';
+import Clock from './Clock';
+import Countdown from "./Countdown";
 
 const CurrentCamera = () => {
     const { currentCamera } = useSelector((state) => state.changeDistrict);
@@ -25,6 +22,13 @@ const CurrentCamera = () => {
                 contentFit="contain"
                 placeholder={require('../assets/indicator.gif')}
             />
+            <View className="absolute top-0 w-full bg-black flex-row pl-1 pr-2 pt-0 pb-0 justify-between">
+                <Text className="text-xs text-white">{DATA.LIST_CAMERA.find(cam => cam.ID == currentCamera).street}</Text>
+                <Clock />
+            </View>
+            <View className="absolute bottom-1 w-full pl-1 pr-2 pt-0 pb-0 justify-between">
+                <Countdown />
+            </View>
         </View>
     );
 };
