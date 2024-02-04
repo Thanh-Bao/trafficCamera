@@ -22,7 +22,7 @@ const CurrentCamera = () => {
                 contentFit="contain"
                 placeholder={require('../assets/indicator.gif')}
             />
-            <View className="absolute top-0 w-full bg-black flex-row pl-1 pr-2 pt-0 pb-0 justify-between">
+            <View className="absolute top-0 w-full bg-black flex-row px-3 pt-0 pb-0.5 justify-between">
                 <Text className="text-xs text-white">{DATA.LIST_CAMERA.find(cam => cam.ID == currentCamera).street}</Text>
                 <Clock />
             </View>

@@ -15,11 +15,15 @@ import { updateCurrentCamera } from '../redux/features/hanlderLocation'
 const CameraItem = ({ objCamera }) => {
 
     const { currentItemSelected } = useSelector((state) => state.changeDistrict);
+    const { listCamera } = useSelector((state) => state.changeDistrict);
+
     const dispatch = useDispatch();
     const isSelected = currentItemSelected == objCamera.ID;
 
     const onPress = (event) => {
-        dispatch(updateCurrentCamera(objCamera.ID))
+        if (listCamera.length > 1) {
+            dispatch(updateCurrentCamera(objCamera.ID))
+        }
     };
     return (
         <TouchableOpacity className={`flex flex-row bg-gray-100 p-2 m-2 rounded-xl ${isSelected ? 'bg-sky-300' : null}`}

@@ -2,7 +2,7 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import React, { useEffect } from 'react';
-import DropdownComponent from './Components/ChooseDistrict';
+import DropdownComponent from './Components/FilterCamera';
 import MyList from './Components/ListCamera';
 import CurrentCamera from './Components/CurrentCamera';
 import { store } from './redux/store'
