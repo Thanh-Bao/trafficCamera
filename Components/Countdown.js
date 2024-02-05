@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import Constants from 'expo-constants';
+import { Text, View } from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTime } from '../redux/features/time';
@@ -27,9 +26,9 @@ export default function Countdown() {
                 trailStrokeWidth={4}
                 strokeWidth={8}
                 isSmoothColorTransition={true}
-                
+
             >
-                {({ remainingTime, color }) => (
+                {({ remainingTime }) => (
                     <Text className="text-white font-bold" style={{ fontSize: 20 }}>
                         {remainingTime}
                     </Text>

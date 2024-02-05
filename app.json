@@ -2,7 +2,7 @@
   "expo": {
     "name": "Camera Việt",
     "slug": "Camera_vietnam",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -11,14 +11,6 @@
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
-    "plugins": [
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
-        }
-      ]
-    ],
     "assetBundlePatterns": [
       "**/*"
     ],
