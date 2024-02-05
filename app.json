@@ -14,22 +14,16 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.tranthanhbao.Camera_vietnam"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "package": "com.camera.viet.stable"
     },
     "extra": {
       "eas": {
-        "projectId": "f2a47901-d73b-4beb-aff5-c007c33e4d07"
+        "projectId": "2fc49e7b-8582-4826-a8e2-38a50039a710"
       }
     }
   }
