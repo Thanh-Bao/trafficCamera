@@ -18,4 +18,12 @@ Build thành .aab trên expo cloud
 
 `eas build --platform android`
 
+_______________________________
+
+# Unity ads
+
+docs is.com
+
+`npm i ironsource-mediation`
+
 
