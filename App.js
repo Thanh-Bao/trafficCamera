@@ -8,9 +8,19 @@ import CurrentCamera from './Components/CurrentCamera';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import { StatusBar } from 'react-native';
+// import {
+//   InitializationEvents,
+//   IronSource,
+//   } from 'ironsource-mediation'
 
 StatusBar.setHidden(true);
 
+// InitializationEvents.onInitializationComplete.setListener(() =>{
+
+//   console.log('=====>>>>>> @@@@ onInitializationComplete')
+//   });
+// IronSource.init("1d75bc075", ['BANNER']);
+// IronSource.validateIntegration();
 
 export default function App() {
   return (
