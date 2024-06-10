@@ -17,20 +17,13 @@ final class PlayerPlaying extends PlayerState {
     final repo = PlayerRepository();
     camera = repo.camera!;
     cameraImage = repo.cameraImage;
+    t = repo.t;
   }
 
+  late final int? t;
   late final Camera camera;
   late final CameraImage? cameraImage;
 
   @override
-  List<Object?> get props => [camera, cameraImage];
-}
-
-final class PlayerPlayingUpdated extends PlayerPlaying {
-  PlayerPlayingUpdated({required this.t}) : super();
-
-  final int t;
-
-  @override
-  List<Object?> get props => [...super.props, t];
+  List<Object?> get props => [t, cameraImage, camera];
 }

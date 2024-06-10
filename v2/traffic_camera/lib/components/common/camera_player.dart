@@ -8,23 +8,35 @@ class CameraPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-        color: Colors.black,
-        child: BlocSelector<PlayerBloc, PlayerState, CameraImage?>(
-          selector: (state) {
-            if (state is! PlayerPlaying) return null;
-            return state.cameraImage;
-          },
-          builder: (context, cameraImage) {
-            if (cameraImage == null || cameraImage.status != CameraImageStatus.hasData) {
-              return const SizedBox();
-            }
+    return LayoutBuilder(builder: (context, constraints) {
+      return ColoredBox(
+          color: Colors.black,
+          child: BlocSelector<PlayerBloc, PlayerState, CameraImage?>(
+            selector: (state) {
+              if (state is! PlayerPlaying) return null;
+              return state.cameraImage;
+            },
+            builder: (context, cameraImage) {
+              final hasData = (cameraImage != null && cameraImage.status == CameraImageStatus.hasData);
 
-            return Image.memory(
-              cameraImage.data!,
-              fit: BoxFit.contain,
-            );
-          },
-        ));
+              final imageWidget = hasData
+                  ? Image.memory(
+                      cameraImage.data!,
+                      fit: BoxFit.contain,
+                    )
+                  : const ColoredBox(color: Colors.black);
+
+              return AnimatedSwitcher(
+                duration: Durations.extralong1,
+                child: SizedBox(
+                  key: Key(cameraImage?.dataId ?? ''),
+                  width: constraints.maxWidth,
+                  height: constraints.maxHeight,
+                  child: imageWidget,
+                ),
+              );
+            },
+          ));
+    });
   }
 }

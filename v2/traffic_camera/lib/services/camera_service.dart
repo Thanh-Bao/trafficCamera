@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,14 +19,21 @@ enum CameraImageStatus {
 class CameraImage extends Equatable {
   final CameraImageStatus status;
   final Uint8List? data;
+  late final String dataId;
 
-  const CameraImage({
+  CameraImage({
     required this.status,
     required this.data,
-  });
+  }) {
+    if (data == null) {
+      dataId = '';
+    } else {
+      dataId = md5.convert(data!.toList()).toString();
+    }
+  }
 
   @override
-  List<Object?> get props => [status, data];
+  List<Object?> get props => [status, dataId];
 }
 
 class CameraService {
@@ -77,12 +85,10 @@ class CameraService {
       final uri = _createUriFromId(id);
       dlog.t(uri.toString());
 
-      final response = await http
-          .get(
-            _createUriFromId(id),
-            headers: headers.toJson(),
-          )
-          .timeout(const Duration(seconds: 3));
+      final response = await http.get(
+        _createUriFromId(id),
+        headers: headers.toJson(),
+      );
 
       final bodyBytes = response.bodyBytes;
 

@@ -1,16 +1,37 @@
-# traffic_camera
+# App ADS
 
-A new Flutter project.
+AppID
 
-## Getting Started
+```text
+ca-app-pub-2035770101337065~7646967797
+```
 
-This project is a starting point for a Flutter application.
+afterClickInterstitialAd
 
-A few resources to get you started if this is your first Flutter project:
+```text
+ca-app-pub-2035770101337065/9856994820
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+homeListNativeAd1
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```text
+ca-app-pub-2035770101337065/7278098791
+```
+
+appOpen
+
+```text
+ca-app-pub-2035770101337065/8435654833
+```
+
+homeListNativeAd2
+
+```text
+ca-app-pub-2035770101337065/5059516605
+```
+
+## app-ads.txt
+
+```text
+google.com, pub-2035770101337065, DIRECT, f08c47fec0942fa0
+```

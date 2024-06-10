@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:traffic_camera/entities/camera/camera.dart';
 import 'package:traffic_camera/services/camera_service.dart';
 import 'package:traffic_camera/utils/ensure_initialized.dart';
@@ -19,6 +17,7 @@ class PlayerRepository extends EnsureInitialized {
 
   CameraImage? _cameraImage;
   CameraImage? get cameraImage => _cameraImage;
+  int? t;
 
   Camera? camera;
 

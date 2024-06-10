@@ -16,20 +16,14 @@ class CameraPlayController extends StatelessWidget {
             key: const Key('counter'),
             bottom: 8.0,
             left: 8.0,
-            child: BlocSelector<PlayerBloc, PlayerState, int?>(
+            child: BlocSelector<PlayerBloc, PlayerState, int>(
               selector: (state) {
-                if (state is! PlayerPlayingUpdated) {
-                  return null;
+                if (state is! PlayerPlaying) {
+                  return 0;
                 }
-                return state.t;
+                return state.t ?? 0;
               },
               builder: (context, t) {
-                if (t == null) {
-                  return const SizedBox(
-                    key: Key('empty'),
-                  );
-                }
-
                 final remainingTime = 5 - t;
 
                 return SizedBox(

@@ -26,6 +26,7 @@ class MemoCacheItem<T> {
 class MemoCache<T> {
   MemoCache({
     required this.onFetch,
+    this.shouldRemove,
     this.cleanInterval = const Duration(seconds: 30),
     Duration cacheExpireTime = const Duration(minutes: 5),
   }) {
@@ -34,8 +35,10 @@ class MemoCache<T> {
   }
 
   final Future<T> Function(String key) onFetch;
+  final bool Function(MemoCacheItem<T>)? shouldRemove;
   final Duration cleanInterval;
   late final int cacheExpireTime;
+
   final _items = <String, MemoCacheItem<T>>{};
   Timer? _timer;
 
@@ -74,7 +77,13 @@ class MemoCache<T> {
 
     final currentTime = DateTime.now().millisecondsSinceEpoch;
     _items.removeWhere(
-      (key, value) => value.expiredAt < currentTime,
+      (key, value) {
+        if (shouldRemove != null && shouldRemove!(value)) {
+          return true;
+        }
+
+        return value.expiredAt < currentTime;
+      },
     );
 
     dlog.i('[MemoCache] items count = ${_items.length}');

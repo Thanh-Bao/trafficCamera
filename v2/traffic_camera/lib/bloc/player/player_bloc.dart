@@ -33,30 +33,37 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
     if (_repo.camera == event.camera) {
       _repo.camera = null;
-      await _repo.updateCameraImage();
+      _repo.t = null;
+      _counter = 0;
 
+      await _repo.updateCameraImage();
       emit(const PlayerStopped());
+
       return;
     }
 
     _repo.camera = event.camera;
+    _repo.t = 0;
+
     await _repo.updateCameraImage();
+    emit(PlayerPlaying());
 
-    emit(PlayerPlayingUpdated(t: 0));
     _counter = 1;
-
     _ticker.resume();
   }
 
   _updated(_PlayerOnUpdate event, Emitter<PlayerState> emit) async {
     if (_repo.camera == null) return;
 
-    if (event.t == 0) {
-      await _repo.updateCameraImage();
-    }
+    _repo.t = event.t;
+    emit(PlayerPlaying());
 
+    if (event.t != 0) return;
+
+    await _repo.updateCameraImage();
     if (_repo.camera == null) return;
-    emit(PlayerPlayingUpdated(t: event.t));
+
+    emit(PlayerPlaying());
   }
 
   _onTick(int v) {

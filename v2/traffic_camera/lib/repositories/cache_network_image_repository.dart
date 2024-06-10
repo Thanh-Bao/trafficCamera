@@ -25,10 +25,19 @@ class CacheNetworkImageRepository extends EnsureInitialized {
   Future<void> load() async {
     _cache = MemoCache<CameraImage>(
       onFetch: _onFetch,
+      shouldRemove: _shouldRemoveCache,
     );
   }
 
   Future<CameraImage> _onFetch(String key) async {
     return await CameraService.loadCamera(key);
+  }
+
+  bool _shouldRemoveCache(MemoCacheItem<CameraImage> v) {
+    final data = v.value;
+
+    if (data == null) return false;
+
+    return (data.status != CameraImageStatus.hasData);
   }
 }
