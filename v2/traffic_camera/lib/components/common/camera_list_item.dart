@@ -5,9 +5,14 @@ import 'package:traffic_camera/components/common/camera_thumbnail.dart';
 import 'package:traffic_camera/entities/camera/camera.dart';
 
 class CameraListItem extends StatelessWidget {
-  const CameraListItem({super.key, required this.camera});
+  const CameraListItem({
+    super.key,
+    required this.camera,
+    this.height = 110,
+  });
 
   final Camera camera;
+  final double height;
 
   _handleTapped(BuildContext context) {
     context.read<PlayerBloc>().add(PlayerOnToggle(camera: camera));
@@ -16,7 +21,9 @@ class CameraListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
+    final selectedColor = colorScheme.primaryContainer.withOpacity(0.5);
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -31,18 +38,18 @@ class CameraListItem extends StatelessWidget {
           builder: (context, playingCamera) {
             final isSelected = (playingCamera == camera);
             return ColoredBox(
-              color: isSelected ? Colors.blue[100]! : Colors.transparent,
+              color: isSelected ? selectedColor : Colors.transparent,
               child: Padding(
                 padding: const EdgeInsets.only(
-                  top: 4.0,
+                  top: 6.0,
                   left: 8.0,
-                  bottom: 4.0,
+                  bottom: 6.0,
                   right: 8.0,
                 ),
                 child: FractionallySizedBox(
                   widthFactor: 1,
                   child: SizedBox(
-                    height: 105,
+                    height: height,
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +59,7 @@ class CameraListItem extends StatelessWidget {
                           key: const Key('thumbnail'),
                           id: camera.id,
                           width: 140,
-                          height: 105,
+                          height: height,
                         ),
                         _Detail(
                           key: const Key('detail'),

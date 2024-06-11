@@ -36,8 +36,8 @@ class CameraPlayController extends StatelessWidget {
                         key: const Key('circular_progress'),
                         child: CircularProgressIndicator(
                           value: remainingTime / 5,
-                          color: const Color.fromARGB(255, 0, 255, 0),
-                          backgroundColor: Colors.grey,
+                          color: Colors.greenAccent,
+                          backgroundColor: Colors.grey.withOpacity(0.3),
                           strokeWidth: 6,
                         ),
                       ),

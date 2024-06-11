@@ -6,14 +6,14 @@ class MyNativeAd extends StatefulWidget {
     super.key,
     required this.adUnitId,
     required this.templateType,
-    required this.maxWidth,
-    required this.maxHeight,
+    required this.width,
+    required this.height,
   }) : props = [adUnitId, templateType];
 
   final String adUnitId;
   final TemplateType templateType;
-  final double maxWidth;
-  final double maxHeight;
+  final double width;
+  final double height;
 
   final List<dynamic> props;
 
@@ -28,7 +28,10 @@ class _MyNativeAdState extends State<MyNativeAd> {
   @override
   void initState() {
     super.initState();
-    _loadAd();
+
+    Future.delayed(const Duration(seconds: 1), () async {
+      _loadAd();
+    });
   }
 
   @override
@@ -88,18 +91,20 @@ class _MyNativeAdState extends State<MyNativeAd> {
 
   @override
   Widget build(BuildContext context) {
-    if (!adDisplayed || currentAd == null) {
-      return const SizedBox();
-    }
+    final isAdDisplayable = (adDisplayed && currentAd != null);
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: widget.maxWidth,
-        maxWidth: widget.maxWidth,
-        maxHeight: widget.maxHeight,
-        minHeight: (widget.templateType == TemplateType.small) ? 90.0 : 350.0,
+    return AnimatedSize(
+      duration: Durations.long2,
+      child: SizedBox(
+        width: widget.width,
+        height: isAdDisplayable ? widget.height : 0,
+        child: isAdDisplayable
+            ? AdWidget(
+                key: const Key('ads'),
+                ad: currentAd!,
+              )
+            : null,
       ),
-      child: AdWidget(ad: currentAd!),
     );
   }
 }

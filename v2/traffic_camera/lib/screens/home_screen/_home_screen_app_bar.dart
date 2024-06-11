@@ -26,37 +26,34 @@ class _AppBar extends StatelessWidget {
     return SliverAppBar(
       key: const Key('app_bar'),
       floating: true,
-      collapsedHeight: kToolbarHeight,
+      collapsedHeight: 64.0,
       flexibleSpace: FractionallySizedBox(
         widthFactor: 1,
         heightFactor: 1,
-        child: ColoredBox(
-          color: Colors.white,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              Padding(
-                key: const Key('districts'),
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Center(
-                  child: _DistrictSelection(
-                    key: const Key('district'),
-                    selectionWidth: selectionWidth,
-                  ),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            Padding(
+              key: const Key('districts'),
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Center(
+                child: _DistrictSelection(
+                  key: const Key('district'),
+                  selectionWidth: selectionWidth,
                 ),
               ),
-              Padding(
-                key: const Key('streets'),
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Center(
-                  child: _StreetSelection(
-                    key: const Key('streets'),
-                    selectionWidth: selectionWidth,
-                  ),
+            ),
+            Padding(
+              key: const Key('streets'),
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Center(
+                child: _StreetSelection(
+                  key: const Key('streets'),
+                  selectionWidth: selectionWidth,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

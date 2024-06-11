@@ -35,6 +35,10 @@ class _SelectionDialogState extends State<_SelectionDialog> {
     Navigator.of(context).pop();
   }
 
+  _handlePop() {
+    Navigator.of(context).pop();
+  }
+
   _handleSearchChange(String v) {
     if (!mounted) return;
     final searchText = Util.makeSearchString(v);
@@ -57,8 +61,6 @@ class _SelectionDialogState extends State<_SelectionDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    final colorScheme = theme.colorScheme;
     return FractionallySizedBox(
       widthFactor: 1,
       heightFactor: 1,
@@ -73,13 +75,13 @@ class _SelectionDialogState extends State<_SelectionDialog> {
         final screenHeight = constraints.maxHeight - screenPadding;
 
         final windowWidth = MathUtil.clampDouble(
-          upper: screenWidth - 64.0,
-          value: 320,
+          upper: screenWidth - 32.0,
+          value: 330,
         );
 
         final windowHeight = MathUtil.clampDouble(
-          upper: screenHeight - 32.0,
-          value: 600,
+          upper: screenHeight - 16.0,
+          value: 650,
         );
 
         final windowTop = (screenHeight - windowHeight) / 2;
@@ -90,9 +92,7 @@ class _SelectionDialogState extends State<_SelectionDialog> {
             Positioned.fill(
               key: const Key('outside'),
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
+                onTap: _handlePop,
                 child: const ColoredBox(color: Colors.transparent),
               ),
             ),
@@ -166,10 +166,16 @@ class _SelectionDialogState extends State<_SelectionDialog> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               TextButton(
+                                key: const Key('remove_selected_btn'),
                                 onPressed: () {
                                   _handleSelected(null);
                                 },
-                                child: const Text('Bỏ chọn'),
+                                child: const Text('Xóa lựa chọn'),
+                              ),
+                              TextButton(
+                                key: const Key('close_btn'),
+                                onPressed: _handlePop,
+                                child: const Text('Đóng'),
                               ),
                             ],
                           ),

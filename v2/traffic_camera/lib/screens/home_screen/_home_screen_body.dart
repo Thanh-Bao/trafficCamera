@@ -55,8 +55,14 @@ class _Body extends StatelessWidget {
                   child: MyNativeAd(
                     adUnitId: AdUnits.homeListNativeAd1,
                     templateType: TemplateType.medium,
-                    maxWidth: width,
-                    maxHeight: 400,
+                    width: width,
+                    height: 400,
+                  ),
+                ),
+                const SliverToBoxAdapter(
+                  key: Key('the_line'),
+                  child: Divider(
+                    height: 1,
                   ),
                 ),
                 BlocSelector<CameraBloc, CameraState, List<Camera>>(
@@ -97,8 +103,8 @@ class _Body extends StatelessWidget {
                       return MyNativeAd(
                         adUnitId: AdUnits.homeListNativeAd2,
                         templateType: TemplateType.medium,
-                        maxWidth: width,
-                        maxHeight: 400,
+                        width: width,
+                        height: 400,
                       );
                     },
                   ),

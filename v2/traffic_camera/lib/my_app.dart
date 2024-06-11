@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:traffic_camera/components/providers/super_provider.dart';
+import 'package:flutter/services.dart';
 import 'package:traffic_camera/layout/home_layout.dart';
 import 'package:traffic_camera/screens/home_screen/home_screen.dart';
 
@@ -8,16 +8,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+    final theme = ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.blue,
+        background: Colors.white,
       ),
-      home: const SuperProvider(
-        child: HomeLayout(
-          child: HomeScreen(),
-        ),
+      useMaterial3: true,
+    );
+
+    final colorScheme = theme.colorScheme;
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: colorScheme.background,
+      systemNavigationBarColor: colorScheme.background,
+      // statusBarBrightness: theme.brightness,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
+
+    return MaterialApp(
+      title: 'Camera Việt',
+      debugShowCheckedModeBanner: false,
+      theme: theme,
+      home: const HomeLayout(
+        child: HomeScreen(),
       ),
     );
   }

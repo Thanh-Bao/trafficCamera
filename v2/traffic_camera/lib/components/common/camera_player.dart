@@ -8,6 +8,11 @@ class CameraPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textStyle = theme.textTheme;
+    final messageStyle = textStyle.labelLarge!.copyWith(
+      color: Colors.white,
+    );
     return LayoutBuilder(builder: (context, constraints) {
       return ColoredBox(
           color: Colors.black,
@@ -17,19 +22,48 @@ class CameraPlayer extends StatelessWidget {
               return state.cameraImage;
             },
             builder: (context, cameraImage) {
-              final hasData = (cameraImage != null && cameraImage.status == CameraImageStatus.hasData);
+              if (cameraImage == null) {
+                return const Center(
+                  key: Key('loading...'),
+                  child: CircularProgressIndicator(),
+                );
+              }
 
-              final imageWidget = hasData
-                  ? Image.memory(
-                      cameraImage.data!,
-                      fit: BoxFit.contain,
-                    )
-                  : const ColoredBox(color: Colors.black);
+              final imageWidget = switch (cameraImage.status) {
+                CameraImageStatus.hasData => Image.memory(
+                    key: const Key('image'),
+                    cameraImage.data!,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(
+                        key: const Key('error'),
+                        child: Text(
+                          'Error !',
+                          style: messageStyle,
+                        ),
+                      );
+                    },
+                  ),
+                CameraImageStatus.maintenance => Center(
+                    key: const Key('maintenance'),
+                    child: Text(
+                      'Đang bảo trì',
+                      style: messageStyle,
+                    ),
+                  ),
+                CameraImageStatus.error => Center(
+                    key: const Key('error'),
+                    child: Text(
+                      'Error !',
+                      style: messageStyle,
+                    ),
+                  ),
+              };
 
               return AnimatedSwitcher(
                 duration: Durations.extralong1,
                 child: SizedBox(
-                  key: Key(cameraImage?.dataId ?? ''),
+                  key: Key(cameraImage.dataId),
                   width: constraints.maxWidth,
                   height: constraints.maxHeight,
                   child: imageWidget,

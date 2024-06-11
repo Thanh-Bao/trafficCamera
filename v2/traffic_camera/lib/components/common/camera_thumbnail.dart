@@ -27,7 +27,7 @@ class CameraThumbnail extends StatelessWidget {
       height: height,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(12.0),
         color: Colors.black,
       ),
       child: BlocBuilder<CacheNetworkImageBloc, CacheNetworkImageState>(
@@ -64,14 +64,22 @@ class CameraThumbnail extends StatelessWidget {
                   );
                 }
 
-                return _Error(key: const Key('error'), textTheme: textTheme);
+                return _Error(
+                  key: const Key('error'),
+                  textTheme: textTheme,
+                );
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const _Loading(key: Key('loading'));
+                return const _Loading(
+                  key: Key('loading'),
+                );
               }
 
-              return _Error(key: const Key('error'), textTheme: textTheme);
+              return _Error(
+                key: const Key('error'),
+                textTheme: textTheme,
+              );
             },
           );
         },
